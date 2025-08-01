@@ -4,9 +4,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import { useState } from "react";
+import { useAppContext } from "@/context/AppContext";
 
 const AddAddress = () => {
-    const { getToken, router } = useAppContext()
+    const { getToken, router } = useAppContext();
 
     const [address, setAddress] = useState({
         fullName: '',
