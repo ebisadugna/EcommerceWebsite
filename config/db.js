@@ -10,6 +10,8 @@ async function connectDB() {
   if (cached.conn) {
     return cached.conn
   }
+      console.log("MongoDB connected successfully before cache")
+
 
   if (!cached.promise) {
     const opts = {
@@ -20,9 +22,12 @@ async function connectDB() {
     cached.promise = mongoose.connect(`${process.env.MONGODB_URI}/quickcart`, opts).then((mongoose) => {
       return mongoose
     })
+    console.log("MongoDB connected successfully")
   }
   cached.conn = await cached.promise
   return cached.conn
+  
 }
+
 
 export default connectDB
