@@ -14,7 +14,7 @@ export async function GET(request) {
       return NextResponse.json({ success: false, message: 'not authorized' });
     }
 
-    await connectDB
+    await connectDB()
 
     const products = await Product.find({})
     return NextResponse.json({ success: true, products })

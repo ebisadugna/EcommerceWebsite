@@ -1,6 +1,8 @@
 import { inngest } from "@/config/inngest";
+import Product from "@/models/Product";
 import User from "@/models/User";
 import { NextResponse } from "next/server";
+import { getAuth } from "@clerk/nextjs/server";
 
 export async function POST(request) {
     try {
