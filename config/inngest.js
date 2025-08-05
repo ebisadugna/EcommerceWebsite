@@ -1,6 +1,7 @@
 import { Inngest } from "inngest";
 import connectDB from "./db";
 import User from "@/models/User";
+import Order from "@/models/Order";
 
 // Create a client to send and receive events
 export const inngest = new Inngest({ id: "quickcart-next" });
@@ -19,8 +20,14 @@ export const syncUserCreation = inngest.createFunction(
       imageUrl: image_url
     }
 
-    await connectDB()
-    await User.create(userData)
+    try {
+      await connectDB();
+      await User.create(userData);
+      console.log("User created:", userData);
+    } catch (error) {
+      console.error("Error creating user:", error);
+    }
+
   }
 )
 
