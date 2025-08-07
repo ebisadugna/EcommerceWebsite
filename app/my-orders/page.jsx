@@ -21,6 +21,7 @@ const MyOrders = () => {
             const token = await getToken();
 
             const { data } = await axios.get('/api/order/list', { headers: { Authorization: `Bearer ${token}` } });
+            console.log("Orders fetched:", data);
 
             if (data.success) {
                 setOrders(data.orders.reverse());
@@ -56,7 +57,7 @@ const MyOrders = () => {
                                     />
                                     <p className="flex flex-col gap-3">
                                         <span className="font-medium text-base">
-                                            {order.items.map((item) => item.product.name + ` x ${item.quantity}`).join(", ")}
+                                            {order.items.flat().map((item) => item.product?.name + ` x ${item.quantity}`).join(", ")}
                                         </span>
                                         <span>Items : {order.items.length}</span>
                                     </p>

@@ -10,7 +10,7 @@ export async function GET(request) {
     await connectDB();
 
     const user = await User.findById(userId);
-
+    console.log("User fetched:", user);
 
     if (!user) {
       return NextResponse.json({ success: false, message: "User Not Found" });
